@@ -1,0 +1,132 @@
+/* =============================================
+   MARQUEE
+============================================= */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+/* =============================================
+   SCROLL INDICATOR
+============================================= */
+@keyframes scrollPulse {
+  0%   { transform: scaleY(0); opacity: 1; }
+  50%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(0.3); opacity: 0; }
+}
+
+/* =============================================
+   HERO ENTRANCE
+============================================= */
+.hero-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(52px);
+  transition:
+    opacity var(--duration-crawl) var(--ease-out),
+    transform var(--duration-crawl) var(--ease-out);
+}
+
+.hero-sub,
+.hero-meta,
+.hero-label {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.hero-animated .hero-label {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0ms;
+}
+
+.hero-animated .hero-line:nth-child(1) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 80ms;
+}
+
+.hero-animated .hero-line:nth-child(2) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 230ms;
+}
+
+.hero-animated .hero-line:nth-child(3) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 380ms;
+}
+
+.hero-animated .hero-sub {
+  opacity: 1;
+  transform: none;
+  transition-delay: 560ms;
+}
+
+.hero-animated .hero-meta {
+  opacity: 1;
+  transform: none;
+  transition-delay: 680ms;
+}
+
+/* =============================================
+   SCROLL REVEAL
+============================================= */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-item[data-delay="1"] { transition-delay: 80ms; }
+.reveal-item[data-delay="2"] { transition-delay: 180ms; }
+.reveal-item[data-delay="3"] { transition-delay: 280ms; }
+.reveal-item[data-delay="4"] { transition-delay: 380ms; }
+
+/* =============================================
+   REDUCED MOTION
+============================================= */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item,
+  .reveal-item.revealed {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-line,
+  .hero-sub,
+  .hero-meta,
+  .hero-label {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  .scroll-line {
+    animation: none;
+  }
+
+  #cursor {
+    display: none;
+  }
+}
